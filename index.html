@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>濰視美學 - 專業好評助手</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap');
+        body { font-family: 'Noto Sans TC', sans-serif; background-color: #fff9f8; }
+        .coral-gradient { background: linear-gradient(135deg, #ff8c70 0%, #ffb3a1 100%); }
+        .card { background: white; border-radius: 24px; box-shadow: 0 10px 25px rgba(255, 140, 112, 0.1); }
+        .btn-coral { background-color: #ff7e61; color: white; transition: all 0.3s ease; }
+        .persona-tag { font-size: 10px; padding: 2px 8px; border-radius: 12px; display: inline-block; margin-bottom: 8px; font-weight: bold; }
+    </style>
+</head>
+<body class="p-4 min-h-screen flex flex-col items-center">
+    <div class="w-full max-w-md">
+        <div class="flex justify-between items-center mb-6 px-2">
+            <div>
+                <h1 class="text-2xl font-bold text-[#ff7e61]">濰視美學</h1>
+                <p class="text-xs text-[#ffb3a1]">專業好評助手．在地化口吻</p>
+            </div>
+            <button onclick="toggleSettings()" class="p-2 rounded-full bg-white shadow-sm text-[#ffb3a1] text-lg">⚙️</button>
+        </div>
+
+        <div id="settings-modal" class="hidden card p-6 mb-6">
+            <h2 class="text-lg font-bold text-gray-700 mb-4">系統設定</h2>
+            <input type="text" id="google-url" class="w-full p-3 bg-gray-50 rounded-xl border border-gray-200" placeholder="貼上 Google Map 評論連結">
+            <button onclick="saveSettings()" class="w-full btn-coral py-3 mt-4 rounded-xl font-bold">儲存設定</button>
+        </div>
+
+        <div class="card p-6 mb-6 space-y-4">
+            <select id="doctor-select" class="w-full p-4 bg-orange-50/30 border border-[#ffdad3] rounded-2xl text-[#e66d54]">
+                <option value="">選擇醫師</option>
+                <option value="林友祺醫師">林友祺醫師</option>
+                <option value="李蕎菀醫師">李蕎菀醫師</option>
+                <option value="陳品含醫師">陳品含醫師</option>
+                <option value="王郁雯醫師">王郁雯醫師</option>
+            </select>
+            <select id="treatment-select" class="w-full p-4 bg-orange-50/30 border border-[#ffdad3] rounded-2xl text-[#e66d54]">
+                <option value="">選擇療程</option>
+                <option value="鳳凰電波">鳳凰電波</option>
+                <option value="海芙電波">海芙電波</option>
+                <option value="海芙音波">海芙音波</option>
+                <option value="皮秒雷射">皮秒雷射</option>
+                <option value="水光針">水光針</option>
+                <option value="水飛梭">水飛梭</option>
+                <option value="點滴">點滴</option>
+            </select>
+            <input type="text" id="consultant-name" class="w-full p-4 bg-orange-50/30 border border-[#ffdad3] rounded-2xl placeholder-orange-300" placeholder="諮詢師名字 (選填)">
+            <input type="text" id="guest-title" class="w-full p-4 bg-orange-50/30 border border-[#ffdad3] rounded-2xl placeholder-orange-300" placeholder="客人稱呼 (如：陳小姐)">
+        </div>
+        <button onclick="generateReview()" class="w-full coral-gradient text-white py-5 rounded-3xl font-bold text-lg shadow-xl mb-8 transform active:scale-95 transition-all">✨ 產出三種個性化文案</button>
+        <div id="result-section" class="hidden space-y-4 pb-12"><div id="review-cards"></div></div>
+    </div>
+
+    <script>
+        const CLINIC_NAME = "濰視美學";
+        const templates = {
+            lively: {
+                name: "🌸 活潑熱情型",
+                color: "bg-pink-100 text-pink-600",
+                list: [
+                    "推推！今天來{clinic}保養心情超好✨ {doctor}手法好溫柔，做{treatments}完全不痛！諮詢師{consultant}也超Nice，環境美到不行❤️",
+                    "終於來解鎖{clinic}了！{treatments}過程超快就結束，醫師技術真的專業💪 謝謝{consultant}幫我安排，體驗100分💯",
+                    "這間真的不推不行！{clinic}氛圍超放鬆～做完{treatments}整個人都亮了✨ 價格透明完全沒壓迫感，愛了愛了！🥰"
+                ]
+            },
+            calm: {
+                name: "👔 沉穩專業型",
+                color: "bg-blue-100 text-blue-600",
+                list: [
+                    "造訪{clinic}進行{treatments}。環境簡潔專業，{doctor}醫師解說細緻，施作過程非常平穩且令人放心。服務優質。",
+                    "{clinic}的流程非常嚴謹。{treatments}療程由{doctor}親自施作，細膩度極佳。諮詢師{consultant}專業度高，值得信賴。",
+                    "在{clinic}體驗了高品質的服務。整體環境衛生，諮詢過程客觀且不強迫。醫師團隊在{treatments}上的技術相當扎實。"
+                ]
+            },
+            direct: {
+                name: "📝 平鋪直述型",
+                color: "bg-gray-100 text-gray-600",
+                list: [
+                    "今天到{clinic}做{treatments}。環境乾淨，醫師和諮詢師人都很客氣。價格也算透明，整體分享給大家。",
+                    "預約了{clinic}的保養，{doctor}手法熟練。流程順暢不拖泥帶水，環境挺舒服的。有需要的人可以參考。",
+                    "朋友介紹來的，{treatments}效果還不錯。診所人員態度優，不會硬推銷。五星好評給個鼓勵。"
+                ]
+            }
+        };
+
+        function toggleSettings() { document.getElementById('settings-modal').classList.toggle('hidden'); }
+        function saveSettings() {
+            localStorage.setItem('rb_google_url', document.getElementById('google-url').value);
+            toggleSettings();
+            alert('設定已儲存');
+        }
+        function generateReview() {
+            const dr = document.getElementById('doctor-select').value || "醫師";
+            const tr = document.getElementById('treatment-select').value;
+            const con = document.getElementById('consultant-name').value || "諮詢師";
+            const guest = document.getElementById('guest-title').value || "我";
+            if (!tr) { alert('請選擇療程'); return; }
+            let html = '';
+            ['lively', 'calm', 'direct'].forEach(key => {
+                const p = templates[key];
+                const text = p.list[Math.floor(Math.random()*p.list.length)]
+                    .replace(/{clinic}/g, CLINIC_NAME).replace(/{doctor}/g, dr).replace(/{treatments}/g, tr).replace(/{consultant}/g, con).replace(/{guest}/g, guest);
+                html += `<div class="card p-6 border-2 border-orange-50 mb-4"><span class="persona-tag ${p.color}">${p.name}</span><p class="text-gray-600 text-sm mb-4 leading-relaxed">${text}</p><div class="grid grid-cols-2 gap-3"><button onclick="copyText(this, \`${text}\`)" class="bg-gray-50 text-gray-500 py-3 rounded-xl font-bold text-sm">複製文字</button><button onclick="goGoogle()" class="btn-coral py-3 rounded-xl font-bold text-sm shadow-sm">前往評論</button></div></div>`;
+            });
+            document.getElementById('review-cards').innerHTML = html;
+            document.getElementById('result-section').classList.remove('hidden');
+            window.scrollTo({ top: document.getElementById('result-section').offsetTop - 20, behavior: 'smooth' });
+        }
+        function copyText(btn, text) {
+            navigator.clipboard.writeText(text).then(() => {
+                const old = btn.innerText; btn.innerText = '✅ 已複製';
+                setTimeout(() => { btn.innerText = old; }, 2000);
+            });
+        }
+        function goGoogle() {
+            const url = localStorage.getItem('rb_google_url');
+            if (!url) { alert('請點擊⚙️設定連結'); toggleSettings(); }
+            else { window.open(url, '_blank'); }
+        }
+        const savedUrl = localStorage.getItem('rb_google_url');
+        if (savedUrl) document.getElementById('google-url').value = savedUrl;
+    </script>
+</body>
+</html>
