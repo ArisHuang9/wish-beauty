@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>濰視美學 - 專業好評助手</title>
+    <title>濰視美學 - 好評小助手</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap');
@@ -19,7 +19,7 @@
         <div class="flex justify-between items-center mb-6 px-2">
             <div>
                 <h1 class="text-2xl font-bold text-[#ff7e61]">濰視美學</h1>
-                <p class="text-xs text-[#ffb3a1]">專業好評助手．在地化口吻</p>
+                <p class="text-xs text-[#ffb3a1]">記得也要自己先看過確認再貼上喔！</p>
             </div>
             <button onclick="toggleSettings()" class="p-2 rounded-full bg-white shadow-sm text-[#ffb3a1] text-lg">⚙️</button>
         </div>
@@ -37,6 +37,8 @@
                 <option value="李蕎菀醫師">李蕎菀醫師</option>
                 <option value="陳品含醫師">陳品含醫師</option>
                 <option value="王郁雯醫師">王郁雯醫師</option>
+                <option value="王雅惠醫師">王雅惠醫師</option>
+                <option value="陳一中醫師">陳一中醫師</option>
             </select>
             <select id="treatment-select" class="w-full p-4 bg-orange-50/30 border border-[#ffdad3] rounded-2xl text-[#e66d54]">
                 <option value="">選擇療程</option>
@@ -49,7 +51,7 @@
                 <option value="點滴">點滴</option>
             </select>
             <input type="text" id="consultant-name" class="w-full p-4 bg-orange-50/30 border border-[#ffdad3] rounded-2xl placeholder-orange-300" placeholder="諮詢師名字 (選填)">
-            <input type="text" id="guest-title" class="w-full p-4 bg-orange-50/30 border border-[#ffdad3] rounded-2xl placeholder-orange-300" placeholder="客人稱呼 (如：陳小姐)">
+            <input type="text" id="guest-title" class="w-full p-4 bg-orange-50/30 border border-[#ffdad3] rounded-2xl placeholder-orange-300" placeholder="身份 (如：小資族)">
         </div>
         <button onclick="generateReview()" class="w-full coral-gradient text-white py-5 rounded-3xl font-bold text-lg shadow-xl mb-8 transform active:scale-95 transition-all">✨ 產出三種個性化文案</button>
         <div id="result-section" class="hidden space-y-4 pb-12"><div id="review-cards"></div></div>
@@ -82,7 +84,7 @@
                 list: [
                     "今天到{clinic}做{treatments}。環境乾淨，醫師和諮詢師人都很客氣。價格也算透明，整體分享給大家。",
                     "預約了{clinic}的保養，{doctor}手法熟練。流程順暢不拖泥帶水，環境挺舒服的。有需要的人可以參考。",
-                    "朋友介紹來的，{treatments}效果還不錯。診所人員態度優，不會硬推銷。五星好評給個鼓勵。"
+                    "朋友介紹，{treatments}整個體驗很不錯。諮詢師態度優，不會硬推銷。五星好評給個鼓勵。"
                 ]
             }
         };
