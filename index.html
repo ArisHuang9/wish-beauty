@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>濰視美學-評論小助手</title>
+    <title>ReviewBoost Lite V4.2 - 濰視美學終極版</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
     <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
@@ -25,8 +25,8 @@
     <script type="text/babel">
         const { useState, useEffect } = React;
         const CLINIC_NAME = "濰視美學";
-        const DOCTORS = ["林友祺醫師", "李蕎菀醫師", "陳品含醫師", "王郁雯醫師","王雅惠醫師","陳一中醫師"];
-        const TREATMENTS = ["鳳凰電波", "海芙電波", "海芙音波","肉毒","玻尿酸", "皮秒雷射", "水光針", "水飛梭", "點滴療程"];
+        const DOCTORS = ["林友祺醫師", "李蕎菀醫師", "陳品含醫師", "王郁雯醫師"];
+        const TREATMENTS = ["鳳凰電波", "海芙電波", "海芙音波", "皮秒雷射", "水光針", "水飛梭", "點滴"];
         const PERSONALITIES = ["活潑", "沉穩", "平實"];
 
         const TEMPLATES = {
@@ -43,29 +43,29 @@
                     "環境真的太美了吧！隨便拍都像網美店，超喜歡✨",
                     "跟風來體驗看看，結果完全沒讓我失望耶！加分加分！",
                     "今天來[診所]充電，服務人員都好親切喔，推推！",
-                    "聽說這間又美又舒服，今天一試果然名不虛傳耶！🔥",
+                    "聽說這間技術很厲害，今天一試果然名不虛傳耶！🔥",
                     "為了變美衝一波！一進門就被香香的環境療癒到了❤️",
                     "身為對細節超要求的[職稱]，這間的服務我給滿分！",
                     "終於有空來整理自己了，這裡的氛圍真的很有SPA感～",
                     "這絕對是我遇過最溫馨的診所，完全沒有冷冰冰的感覺！",
                     "變美計畫啟動！選了[診所]真的選對了，開心✨",
                     "平日忙到爆，今天來這裡被寵愛一下，真的太幸福了！",
-                    "朋友間評價超高不是沒原因的，一進來就知道為什麼！",
-                    "想變美又怕踩雷的人看過來，這間我真心推啦！🚀"
+                    "網路上評價超高不是沒原因的，一進來就知道厲害在哪！",
+                    "想變美又怕踩雷的人看過來，這間我真心激推啦！🚀"
                 ],
                 process: [
                     "[醫師]手法超溫柔，完全不痛！技術沒話說👍",
-                    "[醫師]美感真的強，邊做還會邊安撫，超好聊。",
+                    "[醫師]美感真的強，邊做還會邊安撫，諮詢師[姓名]也超好聊。",
                     "過程超順，諮詢師[姓名]非常有耐心，講解超詳細。",
-                    "技術厲害，退紅比預期快超多，生活幾乎沒有被影響！",
+                    "技術厲害，退紅比預期快超多，這筆錢花得值！",
                     "[醫師]的操作真的很細膩，連我這種怕痛的人都覺得很OK耶！"
                 ],
                 outro: [
-                    "效果好喜歡，錢花得超值得，不踩雷可以衝！🚀",
+                    "效果好到驚艷，錢花得超值得，不踩雷衝就對了！🚀",
                     "愛了愛了！下次還要再來找[醫師]報到。",
                     "五星奉上，這是我遇過最暖心的診所，大推！",
                     "整個人透亮一個階級，素顏也在發光，真心推薦✨",
-                    "心情超美麗！謝謝[醫師]，下次一定再來！",
+                    "心情超美麗！謝謝[醫師]的專業，下次一定再來！",
                     "回不去啦～以後保養都要來這裡，推給所有朋友！",
                     "回家照鏡子都想笑，這筆錢花得太有成就感了！",
                     "真的是相見恨晚耶，早知道早點來[診所]了啦❤️",
@@ -74,7 +74,7 @@
                     "被圈粉到不行，已經在想下次要預約什麼療程了哈哈！",
                     "感謝[診所]團隊，讓我今天的心情跟臉蛋都美美的！",
                     "質感好、技術佳，不推真的對不起良心耶！👍",
-                    "如果你還在糾豫，別想了，趕快預約[醫師]就對了！",
+                    "如果你還在猶豫，別想了，趕快預約[醫師]就對了！",
                     "這是我目前去過最有感的診所，好評奉上沒第二句話！",
                     "變美的過程也能這麼放鬆，這家真的很有水準❤️",
                     "真心覺得每個細節都做得很好，推薦給所有愛美的人！",
@@ -87,16 +87,16 @@
                 intro: [
                     "分享最近在[診所]的體驗，環境專業且舒適。",
                     "身為[職稱]，對服務細節比較要求，這裡讓人很放心。",
-                    "環境簡約有質感，預約制，環境服務都很好，效率也高。",
+                    "環境簡約有質感，預約制度做得很好，效率很高。",
                     "第一次來，整體的氛圍與服務都維持在高水準。",
                     "長期在尋找適合的醫美診所，這裡的環境非常專業。",
-                    "診所的空間很有設計感也兼顧隱私，對我來說很加分。",
+                    "診所的空間設計很有隱私感，對[職稱]來說很加分。",
                     "透過朋友介紹來到[診所]，服務流程確實非常細膩。",
                     "平日工作繁忙，能在這裡安靜地享受療程非常難得。",
                     "對於醫療品質比較挑剔的我，這間診所讓我印象深刻。",
-                    "這是一個可以讓人放輕鬆、專心享受變美的優質空間。",
+                    "這是一個可以讓人放下戒心、專心變美的優質空間。",
                     "分享一次非常愉快的醫療體驗，環境與服務都相當到位。",
-                    "身為需要在乎效率的[職稱]，這裡的流程安排讓我非常滿意。",
+                    "身為重視效率的[職稱]，這裡的流程安排讓我非常滿意。",
                     "來到這能感受到團隊的用心，並非一般商業導向的診所。",
                     "這裡的諮詢過程非常科學且客觀，這點非常值得肯定。",
                     "如果您在意的是長期的專業照護，這間會是不錯的選擇。",
@@ -121,8 +121,8 @@
                     "服務非常穩定，沒有過多的壓力，是很棒的醫美體驗。",
                     "感謝[醫師]精準的評估，效果確實符合我的預期。",
                     "是一間會讓人想介紹給家人的診所，專業度無庸置疑。",
-                    "醫學美感相當成熟，也不會盲目硬推不適合我的，這點我很滿意。",
-                    "如果您在乎的是細節與專業度，這間值得來諮詢看看。",
+                    "醫學美感相當成熟，並非盲目追求流行，這點我很滿意。",
+                                        "如果您在乎的是細節與專業度，這間絕對值得一來。",
                     "服務流程讓人感到賓至如歸，是極具水準的醫美選擇。",
                     "整體表現非常平衡，從環境、專業到服務都值得給予肯定。",
                     "身為[職稱]，我會推薦這裡給對自我形象有要求的同行朋友。",
@@ -168,7 +168,7 @@
                 ],
                 outro: [
                     "效果不錯，推薦給有需要的朋友，五星奉上。",
-                    "推一個，效率高且服務專業，之後還會過來。",
+                                        "推一個，效率高且服務專業，之後還會過來。",
                     "整體很滿意，是不錯的醫美體驗，好評推薦。",
                     "價格與服務對等，是不踩雷的好選擇。",
                     "總體感受挺好的，是會想推薦給朋友的一家店。",
@@ -197,7 +197,6 @@
             const [guestOccupation, setGuestOccupation] = useState('');
             const [selectedTreatment, setSelectedTreatment] = useState(TREATMENTS[0]);
             const [selectedDoctor, setSelectedDoctor] = useState(DOCTORS[0]);
-
             const [selectedPersonality, setSelectedPersonality] = useState(PERSONALITIES[0]);
             const [generatedReview, setGeneratedReview] = useState('');
             const [showSettings, setShowSettings] = useState(false);
@@ -207,12 +206,26 @@
 
             const generateReview = () => {
                 const getRandom = (arr) => arr[Math.floor(Math.random() * arr.length)];
-                const occupation = guestOccupation || "我";
-                const templates = TEMPLATES[selectedPersonality];
-                let review = getRandom(templates.intro).replace('[職稱]', occupation).replace('[診所]', CLINIC_NAME);
-                review += " " + getRandom(templates.process).replace('[醫師]', selectedDoctor).replace('[姓名]', staffName || "諮詢師");
-                review += " " + getRandom(templates.outro).replace('[醫師]', selectedDoctor);
-                setGeneratedReview(review);
+                const occupation = guestOccupation || "愛美人士";
+                                const templates = TEMPLATES[selectedPersonality];
+                
+                const processTags = (text) => {
+                    return text
+                        .replace(/\[職稱\]/g, occupation)
+                        .replace(/\[診所\]/g, CLINIC_NAME)
+                        .replace(/\[診所名稱\]/g, CLINIC_NAME)
+                        .replace(/\[醫師\]/g, selectedDoctor)
+                        .replace(/\[姓名\]/g, staffName || "諮詢師")
+                        .replace(/\[療程\]/g, selectedTreatment)
+                        .replace(/\[項目\]/g, selectedTreatment)
+                        .replace(/\[人員\]/g, selectedDoctor);
+                };
+
+                const intro = processTags(getRandom(templates.intro));
+                const process = processTags(getRandom(templates.process));
+                const outro = processTags(getRandom(templates.outro));
+                
+                setGeneratedReview(`${intro} ${process} ${outro}`);
                 setCopySuccess(false);
             };
 
@@ -227,9 +240,9 @@
                     <header className="flex justify-between items-center mb-8 pt-6 px-2">
                         <div className="flex items-center gap-3">
                             <div className="w-10 h-10 bg-gradient-to-br from-[#ffb08e] to-[#ff7f50] rounded-2xl flex items-center justify-center text-white shadow-lg"><i className="fas fa-sparkles text-lg"></i></div>
-                            <div><h1 className="text-2xl font-bold text-slate-800">{CLINIC_NAME}</h1><p className="text-[10px] text-[#ff7f50] font-bold tracking-widest uppercase">生成後要確認內容正確性再貼喔！</p></div>
+                            <div><h1 className="text-2xl font-bold text-slate-800">{CLINIC_NAME}</h1><p className="text-[10px] text-[#ff7f50] font-bold tracking-widest uppercase">Pro Edition V4.2 (Fixed)</p></div>
                         </div>
-                        <button onClick={() => setShowSettings(!showSettings)} className="w-10 h-10 rounded-full bg-white shadow-sm text-slate-400 flex items-center justify-center hover:text-[#ff7f50] transition"><i className={`fas ${showSettings ? 'fa-times' : 'fa-cog'} text-lg`}></i></button>
+                                                <button onClick={() => setShowSettings(!showSettings)} className="w-10 h-10 rounded-full bg-white shadow-sm text-slate-400 flex items-center justify-center hover:text-[#ff7f50] transition"><i className={`fas ${showSettings ? 'fa-times' : 'fa-cog'} text-lg`}></i></button>
                     </header>
 
                     {showSettings ? (
@@ -243,16 +256,16 @@
                     ) : (
                         <div className="space-y-6">
                             <div className="card p-6">
-                                <h2 className="font-bold mb-6 text-slate-700 flex items-center font-bold"><span className="w-7 h-7 bg-[#fff1eb] text-[#ff7f50] rounded-xl flex items-center justify-center text-xs mr-3 font-bold">01</span>今日情境</h2>
+                                <h2 className="font-bold mb-6 text-slate-700 flex items-center font-bold"><span className="w-7 h-7 bg-[#fff1eb] text-[#ff7f50] rounded-xl flex items-center justify-center text-xs mr-3 font-bold">01</span>當日情境</h2>
                                 <div className="space-y-5">
-                                    <div><label className="block text-[10px] font-bold text-slate-400 mb-2 ml-1 uppercase tracking-wider">模擬語氣</label><div className="flex gap-2">{PERSONALITIES.map(p => <button key={p} onClick={() => setSelectedPersonality(p)} className={`flex-1 py-2 rounded-xl personality-btn bg-slate-50 text-slate-500 text-sm ${selectedPersonality === p ? 'active' : ''}`}>{p}</button>)}</div></div>
+                                                                        <div><label className="block text-[10px] font-bold text-slate-400 mb-2 ml-1 uppercase tracking-wider">模擬語氣</label><div className="flex gap-2">{PERSONALITIES.map(p => <button key={p} onClick={() => setSelectedPersonality(p)} className={`flex-1 py-2 rounded-xl personality-btn bg-slate-50 text-slate-500 text-sm ${selectedPersonality === p ? 'active' : ''}`}>{p}</button>)}</div></div>
                                     <div className="grid grid-cols-2 gap-4">
                                         <div><label className="block text-[10px] font-bold text-slate-400 mb-2 ml-1 uppercase tracking-wider">療程項目</label><select value={selectedTreatment} onChange={(e) => setSelectedTreatment(e.target.value)} className="w-full p-3 bg-slate-50 border-none rounded-xl text-slate-700 text-sm font-bold">{TREATMENTS.map(t => <option key={t} value={t}>{t}</option>)}</select></div>
                                         <div><label className="block text-[10px] font-bold text-slate-400 mb-2 ml-1 uppercase tracking-wider">主治醫師</label><select value={selectedDoctor} onChange={(e) => setSelectedDoctor(e.target.value)} className="w-full p-3 bg-slate-50 border-none rounded-xl text-slate-700 text-sm font-bold">{DOCTORS.map(d => <option key={d} value={d}>{d}</option>)}</select></div>
                                     </div>
                                     <div className="grid grid-cols-2 gap-4">
-                                        <div><label className="block text-[10px] font-bold text-slate-400 mb-2 ml-1 uppercase tracking-wider">客人身份別</label><input type="text" value={guestOccupation} onChange={(e) => setGuestOccupation(e.target.value)} className="w-full p-3 bg-slate-50 border-none rounded-xl outline-none text-sm text-slate-700 font-bold" placeholder="例：小資族、二寶媽"/></div>
-                                        <div><label className="block text-[10px] font-bold text-slate-400 mb-2 ml-1 uppercase tracking-wider">諮詢師姓名</label><input type="text" value={staffName} onChange={(e) => setStaffName(e.target.value)} className="w-full p-3 bg-slate-50 border-none rounded-xl outline-none text-sm text-slate-700 font-bold" placeholder="名字"/></div>
+                                        <div><label className="block text-[10px] font-bold text-slate-400 mb-2 ml-1 uppercase tracking-wider">客人身份別</label><input type="text" value={guestOccupation} onChange={(e) => setGuestOccupation(e.target.value)} className="w-full p-3 bg-slate-50 border-none rounded-xl outline-none text-sm text-slate-700 font-bold" placeholder="例：老師"/></div>
+                                                                                <div><label className="block text-[10px] font-bold text-slate-400 mb-2 ml-1 uppercase tracking-wider">諮詢師姓名</label><input type="text" value={staffName} onChange={(e) => setStaffName(e.target.value)} className="w-full p-3 bg-slate-50 border-none rounded-xl outline-none text-sm text-slate-700 font-bold" placeholder="名字"/></div>
                                     </div>
                                     <button onClick={generateReview} className="w-full py-5 btn-primary rounded-3xl font-bold text-lg shadow-xl active:scale-95 transition-all flex items-center justify-center gap-2"><i className="fas fa-magic"></i>產出自然感好評</button>
                                 </div>
@@ -263,8 +276,7 @@
                                     <div className="bg-[#fffbf9] p-5 rounded-3xl text-slate-600 leading-relaxed text-sm mb-6 relative italic border border-[#fff1eb]">「{generatedReview}」</div>
                                     <div className="flex flex-col gap-3">
                                         <button onClick={copyToClipboard} className={`w-full py-4 rounded-xl font-bold flex items-center justify-center gap-2 transition-all ${copySuccess ? 'bg-green-500 text-white shadow-inner' : 'btn-secondary shadow-sm'}`}><i className={`fas ${copySuccess ? 'fa-check' : 'fa-copy'}`}></i>{copySuccess ? '文案已複製！' : '一鍵複製心得文案'}</button>
-
-                                        <a href={googleLink || '#'} target="_blank" className={`w-full py-4 bg-slate-800 text-white rounded-xl font-bold flex items-center justify-center gap-2 shadow-md ${!googleLink && 'opacity-20'}`} onClick={(e) => !googleLink && e.preventDefault()}><i className="fab fa-google"></i>前往 Google 評論貼上</a>
+                                                                                <a href={googleLink || '#'} target="_blank" className={`w-full py-4 bg-slate-800 text-white rounded-xl font-bold flex items-center justify-center gap-2 shadow-md ${!googleLink && 'opacity-20'}`} onClick={(e) => !googleLink && e.preventDefault()}><i className="fab fa-google"></i>前往 Google 評論貼上</a>
                                     </div>
                                 </div>
                             )}
@@ -279,5 +291,3 @@
     </script>
 </body>
 </html>
-
-
